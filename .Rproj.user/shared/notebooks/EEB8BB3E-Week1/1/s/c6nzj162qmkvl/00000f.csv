@@ -1,0 +1,49 @@
+"0","install.packages(""dplyr"")"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/lifecycle_1.0.5.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 149646 bytes (146 KB)
+"
+"2","downloaded 146 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/rlang_1.1.7.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1631431 bytes (1.6 MB)
+"
+"2","downloaded 1.6 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/vctrs_0.7.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1506436 bytes (1.4 MB)
+"
+"2","downloaded 1.4 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/dplyr_1.2.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1617523 bytes (1.5 MB)
+"
+"2","downloaded 1.5 MB
+
+"
+"1","package ‘lifecycle’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘rlang’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘vctrs’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘dplyr’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\Sarah Robertson\AppData\Local\Temp\Rtmpq0Nzn9\downloaded_packages"
+"1",""
+"1","
+"

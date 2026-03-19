@@ -1,0 +1,9 @@
+---
+title: "Week2"
+author: "sarah.robertson@ucd.ie"
+editor: visual
+---
+
+```{r}
+sessionInfo()
+```
