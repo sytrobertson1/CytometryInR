@@ -1,0 +1,48 @@
+---
+title: "Week3"
+editor: visual
+---
+
+```{r}
+sessionInfo()
+```
+
+```{r}
+PathToDataFolder <- file.path("data")
+fcs_files <- list.files(PathToDataFolder, pattern=".fcs", full.names=TRUE)
+list.files(PathToDataFolder, pattern=".fcs", full.names=FALSE)
+```
+
+```{r}
+firstfile <- fcs_files[1]
+firstfile
+```
+
+```{r}
+flowframe<-read.FCS(filename=firstfile, transformation = FALSE, truncate_max_range = FALSE)
+MFI_Matrix<-flowframe@exprs
+head(MFI_Matrix,5)
+```
+
+```{r}
+#get names of channels, removing unnecessary characters
+ColumnNames<-colnames(MFI_Matrix)
+str(ColumnNames)
+unname(ColumnNames)
+#get first column
+MFI_Matrix[,1]
+#get last column in this file
+MFI_Matrix[,61]
+#get first row
+MFI_Matrix[1,]
+#get individual cell: row 1 column 2
+MFI_Matrix[1,2]
+```
+
+```{r}
+ParameterData <- flowframe@parameters@data
+#alternative syntax w bioconductor
+#ParameterData_Alternate <- parameters(flowframe)@data
+#will need to use $ and not @ to get columns of ParameterData
+#ParameterData$name etc
+```
