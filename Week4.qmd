@@ -1,0 +1,92 @@
+---
+title: "Week4"
+author: "sarah.robertson@ucd.ie"
+editor: visual
+---
+
+```{r}
+sessionInfo()
+#packages needed
+library(dplyr)
+library(ggplot2)
+library(PeacoQC)
+library(BiocManager)
+library(flowSpectrum)
+library(purrr)
+library(flowCore)
+library(flowWorkspace)
+library(stringr)
+library(ggcyto)
+library(tidyr)
+library(tidyverse)
+library(openCyto)
+library(FlowSOM)
+library(xml2)
+library(CytoNorm)
+library(lubridate)
+library(httr2)
+library(flowGate)
+library(devtools)
+library(plotly)
+library(cyCombine)
+library(CytoML)
+library(Rtsne)
+library(uwot)
+```
+
+```{r}
+#Check.names=TRUE changes names to be R-approved characters
+Data <- read.csv(file="course/04_IntroToTidyverse/data/Dataset.csv", check.names=FALSE)
+colnames(Data)
+```
+
+```{r}
+View(Data)
+#glimpse does pretty much the same thing as str(data)
+#glimpse(Data)
+#get dimensions: row, column numbers
+dim(Data)
+#column names that contain special characters (like - or +) need ` on either side to run 
+is.numeric(Data$`CD8-`)
+#only select Date column
+DateColumn <- select(Data, "Date")
+#Get subset using pipe operator |>
+Subset <- Data |> select(bid, timepoint, Condition, Tcells, `CD8+`, `CD4+`)
+#Change order of columns in the subset by changing order in select()
+#Subset <- Data |> select(bid, Tcells, `CD8+`, `CD4+`, timepoint, Condition, )
+#move a column
+#Data |> relocate(Tcells, .after=bid) |> head(3)
+#can change .after to .before to move before, and also use index (like 1) instead of a column name (bid)
+#rename column
+#Renamed <- Subset |> rename(CD4_Positive = `CD4+`)
+#Renamed_Multiple <- Subset |> rename(specimen = bid, timepoint_months = timepoint, stimulation = Condition, CD4Positive=`CD4+`)
+#colnames(Renamed_Multiple)
+#using filter
+#PPDOnly <- Data |> filter(Condition == "PPD")
+#extracting only the rows whose Condition column contains “PPD”
+#Data |> filter(Condition %in% "PPD") |> head(5)
+#extracting rows whose condition column contains PPD or SEB
+#Data |> filter(Condition %in% c("PPD", "SEB")) |> head(5)
+
+
+```
+
+```{r}
+#putting it all together
+TidyData <- Data |> filter(Condition %in% "Ctrl") |> filter(timepoint %in% "0") |> select(bid, timepoint, Condition, Date, Tcells_count, CD45_count) |> rename(specimen=bid, condition=Condition) |> relocate(Date, .after=specimen)
+
+#Create a new column, calculate proportion of T cells from the overall CD45 gate by dividing T cells/CD45 cells
+TidyData <- TidyData |> mutate(Tcells_ProportionCD45 = Tcells_count / CD45_count)
+#round to 2 SFs
+TidyData <- TidyData |> mutate(TcellsRounded = round(Tcells_ProportionCD45, 2))
+
+#descending order
+TidyData <- TidyData |> arrange(desc(TcellsRounded))
+#filter for specimens w more than 30% T cells
+TidyData |> filter(TcellsRounded > 0.3)
+
+#saving
+#NewName <- paste0("MyNewDataset", ".csv")
+#StorageLocation <- file.path("data", NewName)
+#StorageLocation
+```
