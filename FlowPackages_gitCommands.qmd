@@ -1,0 +1,39 @@
+---
+title: "Useful Commands, packages for flow"
+author: "sarah.robertson@ucd.ie"
+editor: visual
+---
+
+For use in Terminal
+
+git branch: check what branch you're in
+
+git branch Week1: makes new branch Week1
+
+git checkout Week1: switches to new branch week1
+
+git config --global rebase.autoStash true: makes rebase automatic to make it easier to rebase/pull
+
+When unable to push to github: In terminal, use git push -u origin Week1 (or whatever branch you're using)
+
+```{r}
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{}
+```
